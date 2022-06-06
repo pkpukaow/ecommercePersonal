@@ -7,18 +7,14 @@ const AuthContext = createContext();
 function AuthContextProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  // const signUp = async (input) => {
-  //   const res = await axios.post("/auth/signup", input);
-  //   setAccessToken(res.data.token);
-  //   const resMe = await axios.get("/users/me");
-  //   setUser(resMe.data.user);
-  // };
+  const signUp = async (input) => {
+    const res = await axios.post("/auth/signup", input);
+    setAccessToken(res.data.token);
+  };
 
   const login = async (username, password) => {
     const res = await axios.post("/auth/login", { username, password });
     setAccessToken(res.data.token);
-    // const resMe = await axios.get("/users/me");
-    // setUser(resMe.data.user);
   };
 
   // const logout = () => {
@@ -27,7 +23,7 @@ function AuthContextProvider({ children }) {
   // };
 
   return (
-    <AuthContext.Provider value={{ user, login }}>
+    <AuthContext.Provider value={{ user, login, signUp }}>
       {children}
     </AuthContext.Provider>
   );
