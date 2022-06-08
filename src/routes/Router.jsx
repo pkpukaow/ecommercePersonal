@@ -5,6 +5,8 @@ import HomePage from "../pages/HomePage";
 import ShopPage from "../pages/ShopPage";
 import SignupPage from "../pages/SignupPage";
 import ItemDetailPage from "../pages/ItemDetailPage";
+import AdminCreate from "../adminpages/AdminCreate";
+import AdminLayout from "../components/userLayout/AdminLayout";
 
 function Router() {
   return (
@@ -14,8 +16,17 @@ function Router() {
       <Route path="*" element={<Navigate to="/login" />} />
       <Route path="/" element={<UserLayout />}>
         <Route path="" element={<HomePage />} />
-        <Route path="/shop" element={<ShopPage />} />
-        <Route path="/shop/:id" element={<ItemDetailPage />} />
+        <Route path="/shop" element={<ShopPage />}></Route>
+        <Route path="/item/:id" element={<ItemDetailPage />} />
+      </Route>
+
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route path="" element={<AdminCreate />} />
+        <Route path="addphoto" element={<div>Photo</div>} />
+      </Route>
+
+      <Route path="/profile" element={<div>Hello</div>}>
+        <Route path=":id" element={<div>Hello</div>} />
       </Route>
     </Routes>
   );

@@ -6,6 +6,7 @@ export default function Form({
   children,
   schema,
   className,
+  onSubmit,
 }) {
   const methods = useForm({
     defaultValues,
@@ -14,7 +15,18 @@ export default function Form({
 
   return (
     <FormProvider {...methods}>
-      <div className={className}>{children}</div>
+      <form
+        onSubmit={methods.handleSubmit((data) => {
+          onSubmit(data, methods.reset);
+        })}
+        className={className}
+      >
+        {children}
+      </form>
     </FormProvider>
   );
 }
+
+// onClick={handleSubmit((data) => {
+//   onClick(data, reset);
+// })}

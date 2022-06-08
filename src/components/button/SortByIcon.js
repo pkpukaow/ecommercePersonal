@@ -1,6 +1,11 @@
-function SortByIcon({ title }) {
+function SortByIcon({ title, onClick, isFocused = false }) {
   return (
-    <button className="py-1 border border-blue-500 hover:bg-blue-700 bg-blue-500 px-2 rounded">
+    <button
+      className={`py-1 px-2 rounded ${
+        isFocused ? "bg-blue-800" : "bg-blue-300"
+      }`}
+      onClick={onClick}
+    >
       {title}
     </button>
   );

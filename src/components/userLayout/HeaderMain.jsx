@@ -1,6 +1,7 @@
-import { BiCart, BiSearch, BiUser } from "react-icons/bi";
+import { BiCart, BiSearch } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import logoImg from "../../assets/picforbg/Logo_img.png";
+import DropdownHeader from "./DropdownHeader";
 
 function HeaderMain() {
   return (
@@ -18,7 +19,7 @@ function HeaderMain() {
           className="flex grow focus:outline-none"
         />
       </div>
-      <div className="flex justify-between items-center gap-9 text-lg">
+      <div className="flex justify-between items-center gap-9 text-lg mr-5">
         <Link to="/shop">
           <button className="text-purple-200">In-stock</button>
         </Link>
@@ -28,9 +29,7 @@ function HeaderMain() {
         <button>
           <BiCart className="text-purple-200 text-xl" />
         </button>
-        <button>
-          <BiUser className="text-purple-200 text-xl" />
-        </button>
+        <DropdownHeader />
       </div>
     </div>
   );

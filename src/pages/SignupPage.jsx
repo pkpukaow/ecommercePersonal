@@ -56,6 +56,7 @@ function SignupPage() {
         </div>
         {/* Column */}
         <Form
+          onSubmit={handleSubmit}
           schema={schema}
           className="gap-3 space-y-4 bg-pink-300 opacity-[0.93] p-6 w-[400px] rounded mt-12 mx-auto"
         >
@@ -72,10 +73,7 @@ function SignupPage() {
             type="password"
             placeholder="Confirm Password"
           />
-          <SubmitButton
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white rounded mt-4"
-            onClick={handleSubmit}
-          >
+          <SubmitButton className="w-full bg-blue-500 hover:bg-blue-700 text-white rounded mt-4">
             Submit
           </SubmitButton>
         </Form>

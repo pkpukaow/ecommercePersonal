@@ -1,72 +1,52 @@
+import { BiUser } from "react-icons/bi";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
+
 function DropdownHeader() {
+  const { logout, user } = useAuth();
+  const dropdownRef = useRef(null);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClickOutside = (e) => {
+    if (!dropdownRef.current.contains(e.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      window.addEventListener("click", handleClickOutside);
+    }
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, [isOpen]);
+
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <>
-      <button
-        id="dropdownDefault"
-        data-dropdown-toggle="dropdown"
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        type="button"
-      >
-        Dropdown button{" "}
-        <svg
-          className="w-4 h-4 ml-2"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19 9l-7 7-7-7"
-          ></path>
-        </svg>
-      </button>
-      {/* BLOCK */}
+    <div
+      role="button"
+      className="relative inline-block"
+      ref={dropdownRef}
+      onClick={handleClick}
+    >
+      <BiUser className="text-white" />
       <div
-        id="dropdown"
-        className="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700"
+        className={`bg-white px-2 flex flex-col absolute z-10 rounded border min-w-[110px] border-black
+      ${isOpen ? "block" : "hidden"}`}
       >
-        <ul
-          className="py-1 text-sm text-gray-700 dark:text-gray-200"
-          aria-labelledby="dropdownDefault"
-        >
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-            >
-              Dashboard
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-            >
-              Settings
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-            >
-              Earnings
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-            >
-              Sign out
-            </a>
-          </li>
-        </ul>
+        <Link to="/profile/:id">Edit Profile</Link>
+        {user === "admin" && <Link to="/admin">Edit Item</Link>}
+        <Link to="/login" onClick={logout}>
+          Log out
+        </Link>
       </div>
-    </>
+    </div>
   );
 }
 
