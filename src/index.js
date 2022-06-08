@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import AuthContextProvider from "./contexts/AuthContext";
 import ErrorContextProvider from "./contexts/ErrorContext";
+import ItemContextProvider from "./contexts/ItemContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -13,7 +14,9 @@ root.render(
     <React.StrictMode>
       <ErrorContextProvider>
         <AuthContextProvider>
-          <App />
+          <ItemContextProvider>
+            <App />
+          </ItemContextProvider>
         </AuthContextProvider>
       </ErrorContextProvider>
     </React.StrictMode>

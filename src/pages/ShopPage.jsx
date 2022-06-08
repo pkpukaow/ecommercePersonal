@@ -1,11 +1,13 @@
 import SortByIcon from "../components/button/SortByIcon";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "../config/axios";
 import CardShop from "../components/card/CardShop";
 
 function ShopPage() {
   const [data, setData] = useState([]);
   const [status, setStatus] = useState("allitem");
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     try {
@@ -42,6 +44,10 @@ function ShopPage() {
     setStatus("instock");
   };
 
+  const handleClickToItemDetail = async (id) => {
+    navigate(`/item/${id}`);
+  };
+
   return (
     <div className="bg-gray-200">
       <div className="pt-8 flex justify-center items-center gap-10 font-medium text-2xl text-white">
@@ -68,6 +74,7 @@ function ShopPage() {
             title={el.charactorName}
             detail={el.animeName}
             price={el.price}
+            onClick={() => handleClickToItemDetail(el.id)}
           />
         ))}
       </div>

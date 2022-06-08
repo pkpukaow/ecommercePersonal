@@ -1,6 +1,9 @@
-function ShopIcon({ title }) {
+function ShopIcon({ title, onClick }) {
   return (
-    <button className="mt-2 rounded bg-blue-500 hover:bg-blue-800  px-2 py-1 text-white">
+    <button
+      onClick={onClick}
+      className="mt-2 rounded bg-blue-500 hover:bg-blue-800  px-2 py-1 text-white"
+    >
       {title}
     </button>
   );

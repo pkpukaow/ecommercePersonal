@@ -43,6 +43,7 @@ function LoginPage() {
               <input
                 className="px-2 rounded grow"
                 placeholder="username"
+                type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
@@ -51,6 +52,7 @@ function LoginPage() {
               <input
                 className="px-2 rounded grow"
                 placeholder="password"
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />

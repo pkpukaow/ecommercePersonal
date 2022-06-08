@@ -11,8 +11,6 @@ import AdminLayout from "../components/userLayout/AdminLayout";
 function Router() {
   return (
     <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/signup" element={<SignupPage />} />
       <Route path="*" element={<Navigate to="/login" />} />
       <Route path="/" element={<UserLayout />}>
         <Route path="" element={<HomePage />} />
@@ -28,6 +26,10 @@ function Router() {
       <Route path="/profile" element={<div>Hello</div>}>
         <Route path=":id" element={<div>Hello</div>} />
       </Route>
+
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
+      <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   );
 }

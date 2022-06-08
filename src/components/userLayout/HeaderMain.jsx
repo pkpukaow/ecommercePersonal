@@ -21,10 +21,7 @@ function HeaderMain() {
       </div>
       <div className="flex justify-between items-center gap-9 text-lg mr-5">
         <Link to="/shop">
-          <button className="text-purple-200">In-stock</button>
-        </Link>
-        <Link to="/shop">
-          <button className="text-purple-200">Pre-order</button>
+          <button className="text-purple-200">Shop now</button>
         </Link>
         <button>
           <BiCart className="text-purple-200 text-xl" />
