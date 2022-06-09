@@ -40,7 +40,7 @@ function DropdownHeader() {
         className={`bg-white px-2 flex flex-col absolute z-10 rounded border min-w-[110px] border-black
       ${isOpen ? "block" : "hidden"}`}
       >
-        <Link to="/profile/:id">Edit Profile</Link>
+        <Link to="/profile">Edit Profile</Link>
         {user === "admin" && <Link to="/admin">Edit Item</Link>}
         <Link to="/login" onClick={logout}>
           Log out

@@ -7,6 +7,7 @@ import SignupPage from "../pages/SignupPage";
 import ItemDetailPage from "../pages/ItemDetailPage";
 import AdminCreate from "../adminpages/AdminCreate";
 import AdminLayout from "../components/userLayout/AdminLayout";
+import ProfilePage from "../pages/ProfilePage";
 
 function Router() {
   return (
@@ -23,13 +24,10 @@ function Router() {
         <Route path="addphoto" element={<div>Photo</div>} />
       </Route>
 
-      <Route path="/profile" element={<div>Hello</div>}>
-        <Route path=":id" element={<div>Hello</div>} />
-      </Route>
+      <Route path="/profile" element={<ProfilePage />} />
 
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
-      <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   );
 }
