@@ -16,7 +16,7 @@ function PasswordEditContent() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="px-[30vw] mx-auto">
+    <form onSubmit={handleSubmit} className="px-[30vw] py-10 mx-auto">
       <div className="grid grid-rows-3 gap-4 font-semibold text-lg">
         <div className="grid grid-cols-12">
           <label className="col-span-4 self-center">Old Password</label>

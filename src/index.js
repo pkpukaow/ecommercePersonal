@@ -7,17 +7,20 @@ import { BrowserRouter } from "react-router-dom";
 import AuthContextProvider from "./contexts/AuthContext";
 import ErrorContextProvider from "./contexts/ErrorContext";
 import ItemContextProvider from "./contexts/ItemContext";
+import CartContextProvider from "./contexts/CartContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <React.StrictMode>
       <ErrorContextProvider>
-        <AuthContextProvider>
-          <ItemContextProvider>
-            <App />
-          </ItemContextProvider>
-        </AuthContextProvider>
+        <CartContextProvider>
+          <AuthContextProvider>
+            <ItemContextProvider>
+              <App />
+            </ItemContextProvider>
+          </AuthContextProvider>
+        </CartContextProvider>
       </ErrorContextProvider>
     </React.StrictMode>
   </BrowserRouter>

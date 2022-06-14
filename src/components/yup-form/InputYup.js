@@ -1,7 +1,15 @@
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
-function InputYup({ name, type, placeholder, label, apiError }) {
+function InputYup({
+  name,
+  type,
+  placeholder,
+  label,
+  apiError,
+  className,
+  ref,
+}) {
   const {
     control,
     formState: { errors },
@@ -15,9 +23,10 @@ function InputYup({ name, type, placeholder, label, apiError }) {
         render={({ field: { onChange, value } }) => {
           return (
             <div>
-              <label htmlFor={name} className="block">
+              <label htmlFor={name} className={`block ${className}`}>
                 <span className="inputLabel ">{label}</span>
                 <input
+                  ref={ref}
                   type={type}
                   name={name}
                   onChange={onChange}

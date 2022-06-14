@@ -7,7 +7,9 @@ import SignupPage from "../pages/SignupPage";
 import ItemDetailPage from "../pages/ItemDetailPage";
 import AdminCreate from "../adminpages/AdminCreate";
 import AdminLayout from "../components/userLayout/AdminLayout";
-import ProfilePage from "../pages/ProfilePage";
+import EditProfilePage from "../components/profilepage/EditProfilePage";
+import CartItem from "../pages/CartItem";
+import TransactionPage from "../pages/TransactionPage";
 
 function Router() {
   return (
@@ -17,14 +19,15 @@ function Router() {
         <Route path="" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />}></Route>
         <Route path="/item/:id" element={<ItemDetailPage />} />
+        <Route path="/profile" element={<EditProfilePage />} />
+        <Route path="/cart" element={<CartItem />} />
+        <Route path="/transaction" element={<TransactionPage />} />
       </Route>
 
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="" element={<AdminCreate />} />
         <Route path="addphoto" element={<div>Photo</div>} />
       </Route>
-
-      <Route path="/profile" element={<ProfilePage />} />
 
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />

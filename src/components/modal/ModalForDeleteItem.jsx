@@ -1,8 +1,9 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
+import { FaRegTrashAlt } from "react-icons/fa";
 
-export default function ModalForAll() {
-  let [isOpen, setIsOpen] = useState(false);
+function ModalForDeleteItem({ deleteItem }) {
+  const [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
     setIsOpen(false);
@@ -14,13 +15,13 @@ export default function ModalForAll() {
 
   return (
     <>
-      <div className="fixed inset-0 flex items-center justify-center">
+      <div>
         <button
           type="button"
           onClick={openModal}
-          className="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          className="rounded-md bg-black bg-opacity-20 px-4 py-2 text-lg font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
-          Open dialog
+          <FaRegTrashAlt />
         </button>
       </div>
 
@@ -49,27 +50,30 @@ export default function ModalForAll() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
+                {/*----------------- TOP HEADER -----------------*/}
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
+                    className="text-2xl font-semibold pb-6 text-center leading-6 text-gray-900"
                   >
-                    Payment successful
+                    You sure Delete This One?
                   </Dialog.Title>
-                  <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Your payment has been successfully submitted. We’ve sent
-                      you an email with all of the details of your order.
-                    </p>
-                  </div>
 
-                  <div className="mt-4">
+                  {/*----------------- Button -----------------*/}
+                  <div className="mt-8 flex justify-around">
+                    <button
+                      onClick={deleteItem}
+                      type="button"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    >
+                      Delete
+                    </button>
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
-                      Got it, thanks!
+                      Cancel
                     </button>
                   </div>
                 </Dialog.Panel>
@@ -81,3 +85,5 @@ export default function ModalForAll() {
     </>
   );
 }
+
+export default ModalForDeleteItem;
