@@ -6,6 +6,7 @@ const AuthContext = createContext();
 
 function AuthContextProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     try {
@@ -14,6 +15,18 @@ function AuthContextProvider({ children }) {
         setUser(res.data.role);
       };
       getUser();
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      const getUserData = async () => {
+        const res = await axios.get("/auth/user");
+        setUserData(res.data.user);
+      };
+      getUserData();
     } catch (err) {
       console.log(err);
     }
@@ -28,6 +41,7 @@ function AuthContextProvider({ children }) {
     const res = await axios.post("/auth/login", { username, password });
     setAccessToken(res.data.token);
     setUser(res.data.role);
+    setUserData(res.data.user);
   };
 
   const logout = () => {
@@ -36,7 +50,15 @@ function AuthContextProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, signUp, logout }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        login,
+        signUp,
+        logout,
+        userData,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

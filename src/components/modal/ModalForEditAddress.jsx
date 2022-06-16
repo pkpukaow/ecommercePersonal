@@ -1,8 +1,15 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
+// import axios from ".././../config/axios";
 
-function ModalForEditAddress({ address, setAddress }) {
+function ModalForEditAddress({ address, setAddress, setCurrentAddress }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleEditAddress = async () => {
+    setCurrentAddress(address);
+    setAddress("");
+    closeModal();
+  };
 
   function closeModal() {
     setIsOpen(false);
@@ -59,16 +66,19 @@ function ModalForEditAddress({ address, setAddress }) {
                   </Dialog.Title>
 
                   {/*----------------- Button -----------------*/}
-                  <form className="mt-8">
+                  <div className="mt-8">
                     <div className="flex justify-center mb-10">
                       <input
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
                         placeholder="insert address"
                         className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
                       />
                     </div>
                     <div className="flex justify-around">
                       <button
-                        type="submit"
+                        onClick={handleEditAddress}
+                        type="button"
                         className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       >
                         Submit
@@ -81,7 +91,7 @@ function ModalForEditAddress({ address, setAddress }) {
                         Cancel
                       </button>
                     </div>
-                  </form>
+                  </div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>

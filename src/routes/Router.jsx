@@ -11,11 +11,11 @@ import EditProfilePage from "../components/profilepage/EditProfilePage";
 import CartItem from "../pages/CartItem";
 import TransactionPage from "../pages/TransactionPage";
 import PurchasePage from "../pages/PurchasePage";
+import AdminOrder from "../adminpages/AdminOrder";
 
 function Router() {
   return (
     <Routes>
-      <Route path="*" element={<Navigate to="/login" />} />
       <Route path="/" element={<UserLayout />}>
         <Route path="" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />}></Route>
@@ -24,15 +24,18 @@ function Router() {
         <Route path="/cart" element={<CartItem />} />
         <Route path="/transaction" element={<TransactionPage />} />
         <Route path="/purchase" element={<PurchasePage />} />
+        <Route path="/success" element={<div>EIEI</div>} />
       </Route>
 
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="" element={<AdminCreate />} />
-        <Route path="addphoto" element={<div>Photo</div>} />
+        <Route path="ordercheck" element={<AdminOrder />} />
       </Route>
 
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
+
+      <Route path="*" element={<Navigate to="/shop" />} />
     </Routes>
   );
 }

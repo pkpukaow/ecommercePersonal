@@ -8,8 +8,7 @@ function HeaderMain() {
   const navigate = useNavigate();
   const [finditem, setFinditem] = useState("");
 
-  const handleClickCart = (e) => {
-    e.preventDefault();
+  const handleClickCart = () => {
     navigate("/cart");
   };
 
