@@ -1,25 +1,19 @@
-import CardImg from "../card/CardImg";
+import { useNavigate } from "react-router-dom";
+import CardTransaction from "../card/CardTransaction";
 
-function CartList({
-  handleDeleteArray,
-  id,
-  charactorName,
-  amount,
-  price,
-  src,
-  status,
-}) {
+function CartTransaction({ charactorName, amount, price, src, status }) {
+  const navigate = useNavigate();
+
   return (
     <>
-      <div className="grid grid-cols-2 mx-auto max-w-5xl">
+      <div className="grid grid-cols-3 mx-auto max-w-5xl">
         <div className="">
-          <CardImg src={src} />
+          <CardTransaction src={src} />
         </div>
-        <div className="flex flex-col justify-between ml-24">
+        <div className="flex flex-col justify-between ml-16">
           <div className="flex flex-col gap-2">
             <h1 className="text-2xl font-semibold">{charactorName}</h1>
             <h3 className="text-lg font-medium">
-              Status :{" "}
               {status === "preorder"
                 ? "Pre-Order"
                 : status === "instock"
@@ -27,19 +21,17 @@ function CartList({
                 : "Sold Out"}
             </h3>
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-col gap-2">
             <h3 className="text-lg font-semibold">Amount : {amount}</h3>
             <h3 className="text-lg font-semibold">Price : ฿{price}</h3>
           </div>
         </div>
-        <div className="col-start-4 justify-self-end self-end  text-xl">
+        <div className="col-start-3 justify-self-end self-end pr-4 text-xl">
           <button
-            onClick={() => {
-              handleDeleteArray(id);
-            }}
+            onClick={() => navigate("/cart")}
             className="font-semibold text-white bg-sky-300 hover:bg-blue-800 rounded py-2 px-3"
           >
-            Delete
+            Edit Item
           </button>
         </div>
       </div>
@@ -48,4 +40,4 @@ function CartList({
   );
 }
 
-export default CartList;
+export default CartTransaction;

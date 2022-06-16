@@ -10,6 +10,7 @@ import AdminLayout from "../components/userLayout/AdminLayout";
 import EditProfilePage from "../components/profilepage/EditProfilePage";
 import CartItem from "../pages/CartItem";
 import TransactionPage from "../pages/TransactionPage";
+import PurchasePage from "../pages/PurchasePage";
 
 function Router() {
   return (
@@ -22,6 +23,7 @@ function Router() {
         <Route path="/profile" element={<EditProfilePage />} />
         <Route path="/cart" element={<CartItem />} />
         <Route path="/transaction" element={<TransactionPage />} />
+        <Route path="/purchase" element={<PurchasePage />} />
       </Route>
 
       <Route path="/admin" element={<AdminLayout />}>

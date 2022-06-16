@@ -30,8 +30,33 @@ function TopDetail({ data }) {
     }
   };
 
-  const handleAddToCart = (e) => {
-    e.preventDefault();
+  // const handleDeleteArray = (id) => {
+  //   const idx = cart.findIndex((el) => el.id === id);
+  //   if (idx !== -1) {
+  //     let cloneCart = [...cart];
+  //     cloneCart.splice(idx, 1);
+  //     setCart(cloneCart);
+  //   }
+  // };
+
+  const handleAddToCart = () => {
+    const cartItem = [...cart];
+    const idx = cartItem.findIndex((el) => el.id === id);
+    if (idx === -1) {
+      cartItem.push({
+        id: data?.id,
+        name: data?.charactorName,
+        price: data?.price,
+        amount: count,
+        image: data?.Images.find((el) => el.picType === "main")?.imageUrl,
+        status: data?.status,
+      });
+    } else {
+      cartItem[idx].amount += count;
+    }
+    setCart(cartItem);
+    console.log("hahahaha");
+    navigate("/cart");
   };
 
   return (
@@ -52,10 +77,17 @@ function TopDetail({ data }) {
           <div className="mt-3 flex flex-col gap-1 text-lg font-medium">
             <h3>{data?.animeName}</h3>
             <h3>{data?.copyRight}</h3>
-            <h3>Status : {data?.status}</h3>
+            <h3>
+              Status :{" "}
+              {data?.status === "preorder"
+                ? "Pre-Order"
+                : data?.status === "instock"
+                ? "In-Stock"
+                : "Sold Out"}
+            </h3>
           </div>
           <h1 className="text-2xl font-semibold text-orange-600 flex gap-1 mt-5">
-            ฿ {data?.price * count}
+            ฿ {data?.price}
           </h1>
           <div className="flex justify-between mt-5 gap-1">
             <div className="flex text-2xl font-bold gap-2">
