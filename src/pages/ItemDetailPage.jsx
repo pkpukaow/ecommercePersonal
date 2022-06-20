@@ -1,5 +1,4 @@
 import BotDetail from "../components/itemdetail/BotDetail";
-import CommentItem from "../components/itemdetail/CommentItem";
 import TopDetail from "../components/itemdetail/TopDetail";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -21,7 +20,6 @@ function ItemDetailPage() {
     <>
       <TopDetail data={data.item} />
       <BotDetail data={data.item} />
-      <CommentItem />
     </>
   );
 }

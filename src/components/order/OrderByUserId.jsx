@@ -1,27 +1,17 @@
-import ModalForEditOrderStatus from "../modal/ModalForEditOrderStatus";
 import ModalForShowPic from "../modal/ModalForShowPic";
 
-function OrderStatus({
+function OrderByUserId({
   src,
   id,
   status,
   firstName,
   lastName,
   customerAddress,
-  setOrder,
-  idx,
 }) {
   return (
     <div className="flex w-[85vw] justify-evenly relative text-lg font-medium my-2">
       <h3>Order_id : {id}</h3>
-      <div>
-        <ModalForEditOrderStatus
-          idx={idx}
-          status={status}
-          setOrder={setOrder}
-          id={id}
-        />
-      </div>
+      <h3>status : {status}</h3>
       <h3>
         customer : {firstName} {lastName}
       </h3>
@@ -31,4 +21,4 @@ function OrderStatus({
   );
 }
 
-export default OrderStatus;
+export default OrderByUserId;

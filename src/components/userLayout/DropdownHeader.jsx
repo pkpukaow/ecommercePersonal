@@ -41,6 +41,7 @@ function DropdownHeader() {
       ${isOpen ? "block" : "hidden"}`}
       >
         <Link to="/profile">Edit Profile</Link>
+        <Link to="/order">Order</Link>
         {user === "admin" && <Link to="/admin">CreateItem</Link>}
         {user === "admin" && <Link to="/admin/ordercheck">CheckOrder</Link>}
         <Link to="/login" onClick={logout}>

@@ -2,11 +2,14 @@ import { useState } from "react";
 import { BiCart, BiSearch } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import logoImg from "../../assets/picforbg/Logo_img.png";
+import { useAuth } from "../../contexts/AuthContext";
 import DropdownHeader from "./DropdownHeader";
+import { BiUser } from "react-icons/bi";
 
 function HeaderMain() {
   const navigate = useNavigate();
   const [finditem, setFinditem] = useState("");
+  const { user } = useAuth();
 
   const handleClickCart = () => {
     navigate("/cart");
@@ -39,7 +42,12 @@ function HeaderMain() {
             className="text-purple-200 text-xl"
           />
         </button>
-        <DropdownHeader />
+        {user && <DropdownHeader />}
+        {user === null && (
+          <Link to="/login">
+            <BiUser className="text-white" />
+          </Link>
+        )}
       </div>
     </div>
   );

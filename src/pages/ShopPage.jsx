@@ -4,18 +4,19 @@ import { useNavigate } from "react-router-dom";
 import axios from "../config/axios";
 import CardShop from "../components/card/CardShop";
 import { AiOutlineClose } from "react-icons/ai";
+import { useAuth } from "../contexts/AuthContext";
 
 function ShopPage() {
   const [data, setData] = useState([]);
   const [status, setStatus] = useState("allitem");
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const fetchData = async () => {
     try {
       const res = await axios.get("/auth");
       setData(res.data.item);
-      console.log(data);
     } catch (err) {
       console.log(err);
     }
@@ -48,7 +49,11 @@ function ShopPage() {
   };
 
   const handleClickToItemDetail = async (id) => {
-    navigate(`/item/${id}`);
+    if (user) {
+      navigate(`/item/${id}`);
+    } else {
+      navigate("/login");
+    }
   };
 
   const handleResetFilter = (e) => {

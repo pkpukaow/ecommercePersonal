@@ -1,27 +1,21 @@
-import OrderStatus from "../components/order/OrderStatus";
-import { AiOutlineClose } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import SortByIcon from "../components/button/SortByIcon";
 import axios from "../config/axios";
+import OrderByUserId from "../components/order/OrderByUserId";
 
-function AdminOrder() {
+function OrderThisUser() {
   const [order, setOrder] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
   const [status, setStatus] = useState("success");
   const [data, setData] = useState([]);
 
   const fetchOrder = async () => {
-    const res = await axios.get("/carts");
+    const res = await axios.get("/carts/me");
     setOrder(res.data.order);
   };
 
   useEffect(() => {
     fetchOrder();
   }, []);
-
-  const handleResetFilter = () => {
-    setSearchInput("");
-  };
 
   const handleClickPending = () => {
     fetchOrder();
@@ -67,49 +61,27 @@ function AdminOrder() {
           isFocused={status === "failed"}
         />
       </div>
-      {/* Search */}
-      <div className="flex items-center justify-center mt-10 mb-8">
-        <input
-          className="flex w-96 rounded p-2"
-          placeholder="Search"
-          value={searchInput}
-          onChange={(e) => {
-            const sortItem = e.target.value;
-            setSearchInput(sortItem);
-          }}
-        />
-        <AiOutlineClose
-          role="button"
-          onClick={handleResetFilter}
-          className="font-bold text-3xl text-white bg-black rounded"
-        />
-      </div>
-      <div className="flex flex-col items-center">
-        {data.map((el, idx) => {
-          if (
-            el.User.firstName
-              .toLowerCase()
-              .includes(searchInput.toLowerCase()) ||
-            el.User.lastName.toLowerCase().includes(searchInput.toLowerCase())
-          ) {
-            return (
-              <OrderStatus
-                key={el.id}
-                id={el.id}
-                status={el.status}
-                firstName={el.User.firstName}
-                lastName={el.User.lastName}
-                customerAddress={el.customerAddress}
-                src={el.slipUrl}
-                idx={idx}
-                setOrder={setOrder}
-              />
-            );
-          }
-        })}
+      <div className="flex flex-col items-center mt-8">
+        {data.map((el) => (
+          <OrderByUserId
+            key={el.id}
+            id={el.id}
+            status={
+              el.status === "pending"
+                ? "Pending"
+                : el.status === "success"
+                ? "Success"
+                : "Failed"
+            }
+            firstName={el.User.firstName}
+            lastName={el.User.lastName}
+            customerAddress={el.customerAddress}
+            src={el.slipUrl}
+          />
+        ))}
       </div>
     </div>
   );
 }
 
-export default AdminOrder;
+export default OrderThisUser;

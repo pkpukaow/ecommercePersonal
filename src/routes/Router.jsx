@@ -12,8 +12,13 @@ import CartItem from "../pages/CartItem";
 import TransactionPage from "../pages/TransactionPage";
 import PurchasePage from "../pages/PurchasePage";
 import AdminOrder from "../adminpages/AdminOrder";
+import SuccessPurchase from "../pages/SuccessPurchase";
+import OrderThisUser from "../pages/OrderThisUser";
+import { useAuth } from "../contexts/AuthContext";
 
 function Router() {
+  const { user } = useAuth();
+
   return (
     <Routes>
       <Route path="/" element={<UserLayout />}>
@@ -24,13 +29,16 @@ function Router() {
         <Route path="/cart" element={<CartItem />} />
         <Route path="/transaction" element={<TransactionPage />} />
         <Route path="/purchase" element={<PurchasePage />} />
-        <Route path="/success" element={<div>EIEI</div>} />
+        <Route path="/success" element={<SuccessPurchase />} />
+        <Route path="/order" element={<OrderThisUser />} />
       </Route>
 
-      <Route path="/admin" element={<AdminLayout />}>
-        <Route path="" element={<AdminCreate />} />
-        <Route path="ordercheck" element={<AdminOrder />} />
-      </Route>
+      {user === "admin" && (
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="" element={<AdminCreate />} />
+          <Route path="ordercheck" element={<AdminOrder />} />
+        </Route>
+      )}
 
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
